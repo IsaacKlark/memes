@@ -10,12 +10,14 @@ const Navigation = () => {
 
   return <div className="min-h-screen">
     <Navbar>
-      <NavbarItem className='link-text'>
-        <Link color={currentPath === "/table" ? "primary" : "foreground"} href="/table">Таблиця</Link>
-      </NavbarItem>
-      <NavbarItem className='link-text'>
-        <Link color={currentPath === "/list" ? "primary" : "foreground"} href="/list">Список</Link>
-      </NavbarItem>
+      <div className='navWrapper'>
+        <NavbarItem className='link-text'>
+          <Link color={currentPath === "/table" ? "primary" : "foreground"} href="/table">Таблиця</Link>
+        </NavbarItem>
+        <NavbarItem className='link-text'>
+          <Link color={currentPath === "/list" ? "primary" : "foreground"} href="/list">Список</Link>
+        </NavbarItem>
+      </div>
     </Navbar>
     <Routes>
       <Route path="/" element={<Navigate to="/table" replace />} />

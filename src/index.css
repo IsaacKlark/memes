@@ -20,28 +20,14 @@ li {
   list-style-type: none;
 }
 
-.table-cell {
- text-align: center;
-}
-
-.table-image-wrapper {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
 .link-text {
   margin-right: 10px;
   margin-bottom: 30px;
   margin-top: 10px;
 }
 
-.modalWrapper {
-  max-width: 400px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+.navWrapper {
+  display: flex;
 }
+
 

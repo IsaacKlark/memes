@@ -40,52 +40,77 @@ function MemeTable() {
   const handleEdit = (meme) => {
     setEditing(meme);
     setModalOpen(true);
+    onOpen()
   };
 
-  const handleSave = () => {
-    setMemes(memes.map(m => m.id === editing.id ? editing : m));
-    setModalOpen(false);
+  const handleSave = (onClose) => {
+    const urlPattern = /^https?:\/\/.+/;
+    if (urlPattern.test(editing.image)
+      && editing.image
+      && editing.name.length >= 3
+      && editing.name.length <= 100
+      && editing.likes >= 0 
+      && editing.likes < 100
+    ) {
+      setMemes(memes.map(m => m.id === editing.id ? editing : m));
+      onClose();
+    }
+
   };
 
   return (
     <>
-      {/* <Modal size="xs" isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal size="xs" isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">Редагувати мем</ModalHeader>
               <ModalBody>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar risus non
-                  risus hendrerit venenatis. Pellentesque sit amet hendrerit risus, sed porttitor
-                  quam.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar risus non
-                  risus hendrerit venenatis. Pellentesque sit amet hendrerit risus, sed porttitor
-                  quam.
-                </p>
-                <p>
-                  Magna exercitation reprehenderit magna aute tempor cupidatat consequat elit dolor
-                  adipisicing. Mollit dolor eiusmod sunt ex incididunt cillum quis. Velit duis sit
-                  officia eiusmod Lorem aliqua enim laboris do dolor eiusmod. Et mollit incididunt
-                  nisi consectetur esse laborum eiusmod pariatur proident Lorem eiusmod et. Culpa
-                  deserunt nostrud ad veniam.
-                </p>
+                <Input
+                  label="ID"
+                  value={editing.id}
+                  readOnly
+                />
+                <Input
+                  label="Назва"
+                  value={editing.name}
+                  onChange={e => setEditing({ ...editing, name: e.target.value })}
+                  required
+                  minLength={3}
+                  maxLength={100}
+                />
+                <Input
+                  label="Картинка"
+                  value={editing.image}
+                  onChange={e => setEditing({ ...editing, image: e.target.value })}
+                  required
+                  pattern="https?://.*"
+                />
+                <Input
+                  type="number"
+                  min="0"
+                  max="99"
+                  label="Вподобайки"
+                  value={editing.likes}
+                  required
+                  onChange={e => {
+                    if (+e.target.value >= 0 && +e.target.value <= 99) {
+                      setEditing({ ...editing, likes: +e.target.value })
+                    }
+                  }}
+                />
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>
-                  Close
+                  Закрити
                 </Button>
-                <Button color="primary" onPress={onClose}>
-                  Action
-                </Button>
+                <Button onPress={() => handleSave(onClose)}>Зберегти</Button>
               </ModalFooter>
             </>
           )}
         </ModalContent>
-      </Modal> */}
-      {editing ? null : <Table isStriped>
+      </Modal>
+      <Table isStriped>
         <TableHeader columns={columns}>
           {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
         </TableHeader>
@@ -107,33 +132,7 @@ function MemeTable() {
             </TableRow>
           ))}
         </TableBody>
-      </Table>}
-
-      {editing && (
-        <Modal isOpen={true} open={modalOpen} onClose={() => setModalOpen(false)}>
-          <div className="p-4 space-y-4">
-            <h2 className="text-xl font-bold">Редагувати мем</h2>
-            <Input
-              label="Назва"
-              value={editing.name}
-              onChange={e => setEditing({ ...editing, name: e.target.value })}
-              required
-              minLengTableCell={3}
-              maxLengTableCell={100}
-            />
-            <Input
-              label="Картинка"
-              value={editing.image}
-              onChange={e => setEditing({ ...editing, image: e.target.value })}
-              required
-              pattern="https?://.*\\.(jpg|jpeg)"
-            />
-            <Button onClick={handleSave}>Зберегти</Button>
-          </div>
-        </Modal>
-      )}
-
-
+      </Table>
     </>
   );
 }
