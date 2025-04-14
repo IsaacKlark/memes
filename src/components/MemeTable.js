@@ -1,6 +1,6 @@
 import {
   Table, Modal, Input,
-  TableHeader, TableRow, Image,
+  TableHeader, TableRow,
   ModalContent,
   ModalHeader,
   ModalBody,
@@ -49,7 +49,7 @@ function MemeTable() {
       && editing.image
       && editing.name.length >= 3
       && editing.name.length <= 100
-      && editing.likes >= 0 
+      && editing.likes >= 0
       && editing.likes < 100
     ) {
       setMemes(memes.map(m => m.id === editing.id ? editing : m));
@@ -120,9 +120,7 @@ function MemeTable() {
               <TableCell className="table-cell">{meme.id}</TableCell>
               <TableCell className="table-cell">{meme.name}</TableCell>
               <TableCell className="table-cell">
-                <div className='table-image-wrapper'>
-                  <Image src={meme.image} alt={meme.name} width={250} />
-                </div>
+                {meme.image}
               </TableCell>
               <TableCell className="table-cell">
                 <Button variant="solid" color="primary" onPress={() => handleEdit(meme)}>

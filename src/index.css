@@ -30,4 +30,18 @@ li {
   display: flex;
 }
 
+.card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 10px;
+  row-gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.card_link {
+  text-decoration: underline;
+  color: rgb(66, 136, 159)
+}
+
 

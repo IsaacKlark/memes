@@ -8,7 +8,6 @@ export function useMemes() {
   });
 
   useEffect(() => {
-    
     localStorage.setItem('memes', JSON.stringify(memes));
   }, [memes]);
 
