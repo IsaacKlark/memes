@@ -1,8 +1,8 @@
 import './App.css';
-import { HashRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation, Link  } from 'react-router-dom';
 import MemeTable from './components/MemeTable';
 import MemeList from './components/MemeList';
-import { Navbar, NavbarItem, Link } from '@heroui/react';
+import { Navbar, NavbarItem} from '@heroui/react';
 
 const Navigation = () => {
   const location = useLocation();
@@ -12,16 +12,15 @@ const Navigation = () => {
     <Navbar>
       <div className='navWrapper'>
         <NavbarItem className='link-text'>
-          <Link color={currentPath === "/table" ? "primary" : "foreground"} href="/table">Таблиця</Link>
+          <Link className={currentPath === "/" ? "activeLink" : ""} to="/">Таблиця</Link>
         </NavbarItem>
         <NavbarItem className='link-text'>
-          <Link color={currentPath === "/list" ? "primary" : "foreground"} href="/list">Список</Link>
+          <Link className={currentPath === "/list" ? "activeLink" : ""} to="/list">Список</Link>
         </NavbarItem>
       </div>
     </Navbar>
     <Routes>
-      <Route path="/" element={<Navigate to="/table" replace />} />
-      <Route path="/table" element={<MemeTable />} />
+      <Route path="/" element={<MemeTable />} />
       <Route path="/list" element={<MemeList />} />
     </Routes>
   </div>
