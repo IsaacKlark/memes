@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import MemeTable from './components/MemeTable';
 import MemeList from './components/MemeList';
 import { Navbar, NavbarItem, Link } from '@heroui/react';
