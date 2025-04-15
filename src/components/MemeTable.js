@@ -33,13 +33,11 @@ const columns = [
 function MemeTable() {
   const [memes, setMemes] = useMemes();
   const [editing, setEditing] = useState(null);
-  const [modalOpen, setModalOpen] = useState(false);
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const handleEdit = (meme) => {
     setEditing(meme);
-    setModalOpen(true);
     onOpen()
   };
 

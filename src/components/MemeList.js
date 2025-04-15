@@ -5,8 +5,6 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
-  Avatar,
-  avatar,
 } from '@heroui/react';
 function MemeList() {
   const [memes] = useMemes();
